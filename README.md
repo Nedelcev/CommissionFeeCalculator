@@ -61,7 +61,7 @@ This project is a PHP application that calculates commission fees for deposit an
    php script.php input.csv
 ```
 
-##Expected Output
+Expected Output
 
   ```csv
   0.60
@@ -98,10 +98,6 @@ The tests validate the commission calculation functionality based on sample inpu
 ## Configuration
 
 - **Exchange Rates**: The application fetches live exchange rates from [exchangeratesapi.io](https://exchangeratesapi.io/). If rates cannot be retrieved, it falls back to the initial rates provided in the `CurrencyConverter` class.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Contributing
 
