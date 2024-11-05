@@ -18,20 +18,24 @@ This project is a PHP application that calculates commission fees for deposit an
 1. Clone the repository:
    ```bash
    git clone https://github.com/Nedelcev/CommissionFeeCalculator.git
-
+   ```
+   
 2. Clone the repository:
    ```bash
    cd commission-fee-calculator
+   ```
 
 3. Install dependencies with Composer: 
    ```bash
    composer install
+   ```
 
 ## Usage
 
   To run the application, use the following command, providing the path to your CSV file as an argument: 
    ```bash
    php script.php input.csv
+   ```
 
 ## Example
 
@@ -50,10 +54,12 @@ This project is a PHP application that calculates commission fees for deposit an
    2016-01-10,3,private,withdraw,1000.00,EUR
    2016-02-15,1,private,withdraw,300.00,EUR
    2016-02-19,5,private,withdraw,3000000,JPY
+   ```
 
    Running the application will output the calculated commission fees for each operation. 
    ```bash
    php script.php input.csv
+```
 
 ##Expected Output
 
@@ -71,7 +77,8 @@ This project is a PHP application that calculates commission fees for deposit an
   0.00
   0.00
   8612
-   
+   ```
+
 ## Project Structure
 
 - `src/`: Contains the main application files.
@@ -84,6 +91,7 @@ This project is a PHP application that calculates commission fees for deposit an
 This project uses PHPUnit for testing. To run the tests, execute:
  ```bash
  ./vendor/bin/phpunit tests
+```
 
 The tests validate the commission calculation functionality based on sample input data.
 
