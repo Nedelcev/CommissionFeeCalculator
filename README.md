@@ -17,7 +17,7 @@ This project is a PHP application that calculates commission fees for deposit an
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/your-username/commission-fee-calculator.git](https://github.com/Nedelcev/CommissionFeeCalculator.git)
+   git clone https://github.com/Nedelcev/CommissionFeeCalculator.git
 
 2. Clone the repository:
    ```bash
