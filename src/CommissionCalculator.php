@@ -8,8 +8,8 @@ use App\Models\Operation;
  * Class CommissionCalculator
  * 
  * This class calculates commission fees for deposit and withdrawal operations.
- * It supports different rules for private and business clients, and handles weekly
- * free limits for private clients.
+ * It applies specific rules for private and business clients and formats
+ * commission amounts based on the operation currency.
  */
 class CommissionCalculator 
 {
@@ -35,12 +35,12 @@ class CommissionCalculator
      * Calculates the commission fee for a given operation.
      * 
      * This method applies different rules based on the operation type (deposit or withdraw)
-     * and user type (private or business). It calculates and returns the commission fee
-     * rounded up to two decimal places.
+     * and user type (private or business). It also formats the commission based on the
+     * currency, removing decimal places for JPY.
      * 
      * @param Operation $operation The operation for which to calculate the commission fee.
      * 
-     * @return string The calculated commission fee, formatted with two decimal places or as '0' if zero.
+     * @return string The calculated commission fee, formatted as per the currency rules.
      */
     public function calculateCommission(Operation $operation) {
         $commission = 0;
@@ -56,7 +56,13 @@ class CommissionCalculator
                 : $operation->amount * 0.005;  // Business clients are charged 0.5% on all withdrawals
         }
 
-        // Format the result to two decimal places or return '0' if zero
+        // Format the result based on currency
+        if ($operation->currency === 'JPY') {
+            // JPY should have no decimal places
+            return $commission == 0 ? '0' : number_format(ceil($commission), 0, '.', '');
+        }
+
+        // For other currencies, format to two decimal places
         return $commission == 0 ? '0' : number_format(ceil($commission * 100) / 100, 2, '.', '');
     }
 
@@ -69,7 +75,7 @@ class CommissionCalculator
      * 
      * @param Operation $operation The withdrawal operation to process.
      * 
-     * @return string The calculated commission fee, formatted with two decimal places or as '0' if zero.
+     * @return string The calculated commission fee, formatted as per the currency rules.
      */
     private function calculatePrivateWithdraw(Operation $operation) {
         $commission = 0;
@@ -110,7 +116,13 @@ class CommissionCalculator
             $commission = $operation->amount * 0.003;
         }
 
-        // Format the result to two decimal places or return '0' if zero
+        // Format the result based on currency
+        if ($operation->currency === 'JPY') {
+            // JPY should have no decimal places
+            return $commission == 0 ? '0' : number_format(ceil($commission), 0, '.', '');
+        }
+
+        // For other currencies, format to two decimal places
         return $commission == 0 ? '0' : number_format(ceil($commission * 100) / 100, 2, '.', '');
     }
 }
